@@ -62,7 +62,7 @@ const ScriptsPage = () => {
       <Nav/>
       <BoxScriptOptions>
         <ScriptOptions className='scrollable-div'>
-            <ScriptsButton title='Suadação' onClick={() => handleFormScrips('salutation')}/>
+            <ScriptsButton title='Saudação' onClick={() => handleFormScrips('salutation')}/>
 
             <ScriptsButton title='Escalonamento' onClick={() => handleFormScrips('escalation')}/>
 
