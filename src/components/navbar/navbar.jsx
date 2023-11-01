@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavBar, NavContainer, MenuToggle } from './nav-bar-styles';
 import { darkModeBackgroundColor, darkModeNavBarColor, darkModeBtnMenuColor } from '../../global-styles/colorScheme';
 import { Button } from '../navbar-button/button';
-import { BsHouse, BsTextIndentLeft, BsHddNetwork, BsWhatsapp, BsQuestionCircle } from 'react-icons/bs';
+import { BsHouse, BsTextIndentLeft, BsHddNetwork, BsWhatsapp, BsQuestionCircle, BsJournalBookmark, BsCheck2Square } from 'react-icons/bs';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Nav = () => {
@@ -32,7 +32,9 @@ const Nav = () => {
             scripts: path === '/scripts',
             api: path === '/api',
             whatsapp: path === '/whatsapp',
-            help: path === '/help',
+            OSModel: path === '/os-model',
+            releases: path === '/releases',
+            help: path === '/help'
         };
         return initialStates;
     };
@@ -59,6 +61,12 @@ const Nav = () => {
                 break;
             case 'whatsapp':
                 navigate('/whatsapp');
+                break;
+            case 'OSModel':
+                navigate('/os-model');
+                break;
+            case 'releases':
+                navigate('/releases');
                 break;
             case 'help':
                 navigate('/help');
@@ -90,7 +98,7 @@ const Nav = () => {
                 <MenuToggle rotate={rotateIcon} translateY={iconPosition} boxShadow={barIconMenu} onClick={() => setActive(!active)} />
                 <ul>
                     <li>
-                        <Button
+                        <Button // Aba Home
                             onClick={() => handleButtonClick('home')}
                             state={btnStates.home}
                             color={btnStates.home ? btnActiveColor : btnInactiveColor}
@@ -99,7 +107,7 @@ const Nav = () => {
                         />
                     </li>
                     <li>
-                        <Button
+                        <Button // Aba scripts
                             onClick={() => handleButtonClick('scripts')}
                             state={btnStates.scripts}
                             color={btnStates.scripts ? btnActiveColor : btnInactiveColor}
@@ -108,7 +116,7 @@ const Nav = () => {
                         />
                     </li>
                     <li>
-                        <Button
+                        <Button // Aba API
                             onClick={() => handleButtonClick('api')}
                             state={btnStates.api}
                             color={btnStates.api ? btnActiveColor : btnInactiveColor}
@@ -117,7 +125,7 @@ const Nav = () => {
                         />
                     </li>
                     <li>
-                        <Button
+                        <Button // Aba testes de canal whatsapp
                             onClick={() => handleButtonClick('whatsapp')}
                             state={btnStates.whatsapp}
                             color={btnStates.whatsapp ? btnActiveColor : btnInactiveColor}
@@ -126,7 +134,25 @@ const Nav = () => {
                         />
                     </li>
                     <li>
-                        <Button
+                        <Button // Aba testes de canal whatsapp
+                            onClick={() => handleButtonClick('OSModel')}
+                            state={btnStates.OSModel}
+                            color={btnStates.OSModel ? btnActiveColor : btnInactiveColor}
+                            icon={<BsCheck2Square />}
+                            text={active ? 'OSs Modelo' : ''}
+                        />
+                    </li>
+                    <li>
+                        <Button // Aba notas da versão
+                            onClick={() => handleButtonClick('releases')}
+                            state={btnStates.releases}
+                            color={btnStates.releases ? btnActiveColor : btnInactiveColor}
+                            icon={<BsJournalBookmark />}
+                            text={active ? 'Versões' : ''}
+                        />
+                    </li>
+                    <li>
+                        <Button // Aba ajuda
                             onClick={() => handleButtonClick('help')}
                             state={btnStates.help}
                             color={btnStates.help ? btnActiveColor : btnInactiveColor}

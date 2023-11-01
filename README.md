@@ -1,7 +1,7 @@
 # ASC TOOLS
 
 ### Home Page
-- Some information still undefined
+- Some tool shortcuts used daily and a tab for news
 
 ### Scripts
 - Tool for creating predefined scripts

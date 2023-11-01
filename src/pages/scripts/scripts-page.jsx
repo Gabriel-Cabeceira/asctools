@@ -3,35 +3,78 @@ import {Inputs} from '../../components/inputs/inputs';
 import { TextScripts } from '../../components/text-scripts/text-scripts';
 import { ScriptsButton } from '../../components/scripts-button/scripts-button';
 import {Nav} from '../../components/navbar/navbar';
+import { PtScripts } from '../../components/scripts-templates/portuguese-template/pt'
+import { useState } from 'react';
+import { SalutationForm } from '../../components/forms/salutation/salutation'
 
 
-const TextTest = `
-Olá Gabriel, seja muito bem vindo ao mundo ASCBrazil!
 
-O seu chamado foi encaminhado para o setor Infraestrutura e informaremos nesta OS para que possam acompanhar e validar se está tudo Ok!
 
-O novo tempo estimado de resposta é de até 48 horas úteis.
 
-Lembrando que poderá ser concluído antes! Quaisquer novidades, o manteremos informados e precisando pode nos chamar.
-
-Atenciosamente,
-Time Helpdesk AscBrazil
-`
 
 
 const ScriptsPage = () => {
+
+  // Gerencia a exibição dos formulários em tela
+  const [form, setForm] = useState('');
+
+  // Aplica qual formulário será exibido
+  const handleFormScrips = (name) => {
+
+    switch (name) {
+      case 'salutation':
+        setForm(<SalutationForm/>);
+        break;
+
+      case 'escalation':
+        setForm('ESCALONAMENTO');
+        break;
+
+      case 'clientScheduleUpdate':
+        setForm('AGENDAMENTO DE ATUALIZAÇOES');
+        break;
+
+      case 'confirmScheduleUpdate':
+        setForm('CONFIRMA AGENDAMENTO');
+        break;
+
+      case 'trelloScheduleUpdate':
+        setForm('ATUALIZAÇOES TRELLO');
+        break;
+
+      case 'registerInfo':
+        setForm('REGISTRO DE INFORMAÇOES');
+        break;
+
+      case 'ehz':
+        setForm('EHZ');
+        break
+
+      default:
+        setForm('');
+    }
+  }
+
+
+
   return (
     <Main>
       <Nav/>
       <BoxScriptOptions>
         <ScriptOptions className='scrollable-div'>
-            <ScriptsButton name='Suadação'/>
-            <ScriptsButton name='Escalonamento'/>
-            <ScriptsButton name='Agendar Atualização (Cliente)'/>
-            <ScriptsButton name='Confirmar Atualização'/>
-            <ScriptsButton name='Agendamento Atualização (Trello)'/>
-            <ScriptsButton name='Registro de informações'/>
-            <ScriptsButton name='EHZ'/>
+            <ScriptsButton title='Suadação' onClick={() => handleFormScrips('salutation')}/>
+
+            <ScriptsButton title='Escalonamento' onClick={() => handleFormScrips('escalation')}/>
+
+            <ScriptsButton title='Agendar Atualização (Cliente)' onClick={() => handleFormScrips('clientScheduleUpdate')}/>
+
+            <ScriptsButton title='Confirmar Atualização' onClick={() => handleFormScrips('confirmScheduleUpdate')}/>
+
+            <ScriptsButton title='Agendamento Atualização (Trello)' onClick={() => handleFormScrips('trelloScheduleUpdate')}/>
+
+            <ScriptsButton title='Registro de informações' onClick={() => handleFormScrips('registerInfo')}/>
+
+            <ScriptsButton title='EHZ' onClick={() => handleFormScrips('ehz')}/>
         </ScriptOptions>
       </BoxScriptOptions>
 
@@ -41,15 +84,9 @@ const ScriptsPage = () => {
 
       <BoxGeneralScripts>
         <BoxInputScripts>
-            <Inputs placeholder='Nome do Contato'/>
-            <Inputs placeholder='Setor'/>
-            <Inputs placeholder='SLA'/>
-            <Inputs placeholder='Substantivo'/>
+          {form}
         </BoxInputScripts>
 
-        <BoxScripts>
-            <TextScripts text={TextTest}/>
-        </BoxScripts>
       </BoxGeneralScripts>
     </Main>
   )

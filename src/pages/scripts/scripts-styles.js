@@ -49,7 +49,7 @@ export const LineDivision = styled.div`
 
 export const BoxGeneralScripts = styled.div`
     width: 60vw;
-    height: 95%;
+    height: 80%;
     margin: 1em;
 `
 export const BoxInputScripts = styled.div`
@@ -60,11 +60,5 @@ export const BoxInputScripts = styled.div`
     grid-template-columns: 1fr 1fr;
     justify-items: center;
     align-items: center;
-`
-export const BoxScripts = styled.div`
-    width: 100%;
-    height: 60%;
-    margin: 1em auto;
-    border-radius: 2px;
 `
 

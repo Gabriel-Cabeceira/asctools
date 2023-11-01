@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { darkModeNavBarColor, darkModeBackgroundColor } from '../../global-styles/colorScheme'
+import { darkModeNavBarColor, darkModeBackgroundColor, darkModeFontColor, darkModeIconsColor } from '../../global-styles/colorScheme'
 
 
 export const Main = styled.div`
@@ -8,10 +8,10 @@ export const Main = styled.div`
 `
 
 export const HomeContent = styled.div`
-    width: 80vw;
-    height: 90vh;
-    margin-left: 5em;
-    color: #FFFFFF;
+    width: 65vw;
+    height: 100vh;
+    margin-left: 12em;
+    color: ${darkModeFontColor};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,7 +42,72 @@ export const BoxesContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+`
 
+export const ArticleContainer = styled.article`
+    width: 30%;
+    height: 100%;
+    padding: 1em 2em;
+    background-color: ${darkModeNavBarColor};
+
+
+    h2 {
+        text-align: center;
+        font-weight: lighter;
+        font-style: italic;
+        margin-bottom: 1em;
+        color: ${darkModeFontColor}
+    }
+
+    ul {
+        list-style: circle;
+        padding: 0 1em;
+        height: 75%;
+        overflow: hidden auto;
+        color: ${darkModeFontColor};
+
+        &::-webkit-scrollbar {
+            width: 5px; /* Largura da barra de rolagem */
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            background: ${darkModeBackgroundColor};
+            border-radius: 5px;
+        }
+    }
+`
+
+
+export const NewsSection = styled.article`
+    width: 65%;
+    height: 100%;
+    padding: 1em 2em;
+    background-color: ${darkModeNavBarColor};
+
+
+    h2 {
+        text-align: center;
+        font-weight: lighter;
+        font-style: italic;
+        margin-bottom: 1em;
+        color: ${darkModeFontColor}
+    }
+
+    ul {
+        list-style: circle;
+        padding: 0 1em;
+        height: 75%;
+        overflow: hidden auto;
+
+        &::-webkit-scrollbar {
+            width: 5px; /* Largura da barra de rolagem */
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: ${darkModeBackgroundColor};
+            border-radius: 5px;
+        }
+    }
 `
 
 export const FooterContainer = styled.div`
@@ -50,6 +115,7 @@ export const FooterContainer = styled.div`
     height: 10%;
     margin-bottom: 2em;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: ${darkModeNavBarColor};
@@ -57,4 +123,10 @@ export const FooterContainer = styled.div`
 
 export const FooterImage = styled.img`
     width: 3em;
+`
+
+export const FooterParagraph = styled.p`
+    font-size: 0.5em;
+    margin-top: 5px;
+    color: ${darkModeBackgroundColor};
 `
