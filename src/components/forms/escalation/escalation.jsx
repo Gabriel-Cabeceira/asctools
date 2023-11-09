@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { FormContainer, Divisor, ScriptContainer, Script, Signature, ButtonDiv, SelectLanguage } from './salutation-styles';
+import { FormContainer, Divisor, ScriptContainer, Script, Signature, ButtonDiv, SelectLanguage } from './escalation-styles';
 import { Inputs } from '../../inputs/inputs';
 import { Selects } from '../../selects/selects';
 import { FormActionButton } from '../../form-buttons/form-buttons';
 
-const SalutationForm = () => {
+const EscalationForm = () => {
   // Estado inicial do script
   const [script, setScript] = useState(''); 
 
@@ -13,6 +13,7 @@ const SalutationForm = () => {
     contactName: '', 
     sla: '',
     substantive: '',
+    section: '',
   });
 
   // Gerencia o estado da expressão 'bem vindo' em português
@@ -30,19 +31,58 @@ const SalutationForm = () => {
   // Gerencia o estado dos verbos em espanhol
   const [verboSer, setVerboSer] = useState('sea');
 
+  const setorNomes = {
+    pt: {
+      Infraestrutura: 'Infraestrutura',
+      'HelpDesk N2': 'HelpDesk N2',
+      Financeiro: 'Financeiro',
+      Desenvolvimento: 'Desenvolvimento',
+      Contratos: 'Contratos',
+      Comercial: 'Comercial',
+      Projetos: 'Projetos',
+      'Segurança da Informação': 'Segurança da Informação',
+      Treinamento: 'Treinamento',
+      LGPD: 'LGPD',
+    },
+    en: {
+      Infraestrutura: 'Infrastructure',
+      'HelpDesk N2': 'HelpDesk N2',
+      Financeiro: 'Financial',
+      Desenvolvimento: 'Development',
+      Contratos: 'Contracts',
+      Comercial: 'Commercial',
+      Projetos: 'Projects',
+      'Segurança da Informação': 'Information Security',
+      Treinamento: 'Training',
+      LGPD: 'LGPD',
+    },
+    es: {
+      Infraestrutura: 'Infraestructura',
+      'HelpDesk N2': 'HelpDesk N2',
+      Financeiro: 'Finanzas',
+      Desenvolvimento: 'Desarrollo',
+      Contratos: 'Contratos',
+      Comercial: 'Comercial',
+      Projetos: 'Proyectos',
+      'Segurança da Información': 'Seguridad de la Información',
+      Treinamento: 'Entrenamiento',
+      LGPD: 'LGPD',
+    },
+  };
+
   useEffect(() => {
     // Atualizar saudação com base no substantivo selecionado
     if (formData.substantive === 'plural') {
       setSaudacao('bem vindos');
       setSer('sejam');
       setPoder('possam');
-      setGenero('plural'); // "plural" é geralmente masculino em espanhol
+      setGenero('plural');
       setVerboSer('sean');
     } else if (formData.substantive === 'female') {
       setSaudacao('bem vinda');
       setSer('seja');
       setPoder('possa');
-      setGenero('feminino'); // "female" é feminino em espanhol
+      setGenero('feminino');
       setVerboSer('sea');
     } else {
       setSaudacao('bem vindo'); // Caso padrão (masculino)
@@ -53,18 +93,19 @@ const SalutationForm = () => {
 
   const [language, setLanguage] = useState('pt');
 
+
   // Gerencia a criação do script
   const handleGenerateScript = (e) => {
     e.preventDefault();
 
-    const { contactName, sla } = formData;
+    const { contactName, sla, section } = formData;
     let generatedScript = '';
 
     if (language === 'pt') {
       generatedScript = `
       Olá ${contactName}, ${ser} muito ${saudacao} ao mundo ASCBrazil!
       
-      Estamos analisando a sua solicitação e informaremos o status neste chamado para que ${poder} acompanhar e validar se está tudo OK.
+      O seu chamado foi encaminhado para o setor ${setorNomes[language][section]} e informaremos nesta OS para que possam acompanhar e validar se está tudo Ok!
       
       O tempo estimado de resposta é de até ${sla} horas úteis.
       
@@ -72,9 +113,9 @@ const SalutationForm = () => {
       `;
     } else if (language === 'en') {
       generatedScript = `
-      Hello ${contactName}, welcome to the ASCBrazil’s world!
+      Hello ${contactName}, ${ser === 'seja' ? 'welcome' : 'welcome'} to the ASCBrazil’s world!
 
-      We are analyzing your request and will inform you here for follow-up and validation.
+      Your call has been forwarded to the ${setorNomes[language][section]} sector and we will inform you on this SO so that we can monitor and validate that everything is ok!
       
       Estimated response time is up to ${sla} business hours.
       
@@ -93,7 +134,7 @@ const SalutationForm = () => {
       generatedScript = `
       Hola ${contactName}, ${verboSer} muy ${greeting} al mundo ASCBrazil!
 
-      Estamos analizando su solicitud y le informaremos en este ticket para seguimiento y validación.
+      ¡Tu llamada ha sido reenviada al sector ${setorNomes[language][section]} y te informaremos sobre este SO para que podamos monitorear y validar que todo está bien!
       
       El tiempo estimado de respuesta es de hasta ${sla} horas hábiles.
       
@@ -103,6 +144,7 @@ const SalutationForm = () => {
 
     setScript(generatedScript);
   };
+
 
   // Configura a função de cópia
   const [btnCopyTitle, setBtnCopyTitle] = useState('Copiar');
@@ -123,6 +165,7 @@ const SalutationForm = () => {
     });
   };
 
+
   // Gerencia a função de definir linguagem
   const handleLanguageChange = (e) => {
     const selectedLanguage = e.target.value;
@@ -141,6 +184,26 @@ const SalutationForm = () => {
               value={formData.contactName}
               onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
             />
+          </Divisor>
+
+          <Divisor>
+            <Selects
+              name='section'
+              value={formData.section}
+              onChange={(e) => setFormData({ ...formData, section: e.target.value })}
+            >
+              <option value=''>Selecione um Setor</option>
+              <option value='Infraestrutura'>Infraestrutura</option>
+              <option value='HelpDesk N2'>HelpDesk N2</option>
+              <option value='Financeiro'>Financeiro</option>
+              <option value='Desenvolvimento'>Desenvolvimento</option>
+              <option value='Contratos'>Contratos</option>
+              <option value='Comercial'>Comercial</option>
+              <option value='Projetos'>Projetos</option>
+              <option value='Segurança da Informação'>Segurança da Informação</option>
+              <option value='Treinamento'>Treinamento</option>
+              <option value='LGPD'>LGPD</option>
+            </Selects>
           </Divisor>
 
           <Divisor>
@@ -219,4 +282,4 @@ const SalutationForm = () => {
   );
 };
 
-export { SalutationForm };
+export { EscalationForm };

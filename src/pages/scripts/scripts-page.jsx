@@ -1,11 +1,9 @@
 import {Main, BoxScriptOptions, BoxLineDivision, BoxGeneralScripts, ScriptOptions, LineDivision, BoxInputScripts, BoxScripts} from './scripts-styles';
-import {Inputs} from '../../components/inputs/inputs';
-import { TextScripts } from '../../components/text-scripts/text-scripts';
 import { ScriptsButton } from '../../components/scripts-button/scripts-button';
 import {Nav} from '../../components/navbar/navbar';
-import { PtScripts } from '../../components/scripts-templates/portuguese-template/pt'
 import { useState } from 'react';
-import { SalutationForm } from '../../components/forms/salutation/salutation'
+import { SalutationForm } from '../../components/forms/salutation/salutation';
+import { EscalationForm } from '../../components/forms/escalation/escalation'
 
 
 
@@ -27,7 +25,7 @@ const ScriptsPage = () => {
         break;
 
       case 'escalation':
-        setForm('ESCALONAMENTO');
+        setForm(<EscalationForm/>);
         break;
 
       case 'clientScheduleUpdate':
