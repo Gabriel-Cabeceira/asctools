@@ -4,7 +4,7 @@ import {Nav} from '../../components/navbar/navbar';
 import { useState } from 'react';
 import { SalutationForm } from '../../components/forms/salutation/salutation';
 import { EscalationForm } from '../../components/forms/escalation/escalation'
-
+import { RegisterInformationForm } from '../../components/forms/information-register/infoRegister';
 
 
 
@@ -28,6 +28,10 @@ const ScriptsPage = () => {
         setForm(<EscalationForm/>);
         break;
 
+      case 'registerInfo':
+        setForm(<RegisterInformationForm/>);
+        break;
+
       case 'clientScheduleUpdate':
         setForm('AGENDAMENTO DE ATUALIZAÇOES');
         break;
@@ -38,10 +42,6 @@ const ScriptsPage = () => {
 
       case 'trelloScheduleUpdate':
         setForm('ATUALIZAÇOES TRELLO');
-        break;
-
-      case 'registerInfo':
-        setForm('REGISTRO DE INFORMAÇOES');
         break;
 
       case 'ehz':
@@ -64,13 +64,13 @@ const ScriptsPage = () => {
 
             <ScriptsButton title='Escalonamento' onClick={() => handleFormScrips('escalation')}/>
 
+            <ScriptsButton title='Registro de informações' onClick={() => handleFormScrips('registerInfo')}/>
+
             <ScriptsButton title='Agendar Atualização (Cliente)' onClick={() => handleFormScrips('clientScheduleUpdate')}/>
 
             <ScriptsButton title='Confirmar Atualização' onClick={() => handleFormScrips('confirmScheduleUpdate')}/>
 
             <ScriptsButton title='Agendamento Atualização (Trello)' onClick={() => handleFormScrips('trelloScheduleUpdate')}/>
-
-            <ScriptsButton title='Registro de informações' onClick={() => handleFormScrips('registerInfo')}/>
 
             <ScriptsButton title='EHZ' onClick={() => handleFormScrips('ehz')}/>
         </ScriptOptions>

@@ -1,16 +1,14 @@
-import {BoxInput, Input} from './input-styles'
+import {BoxInput, TextArea} from './text-area-styles'
 
-const Inputs = (props) => {
+const TextAreas = (props) => {
   return (
-    <BoxInput>
-      <Input 
+      <TextArea 
         placeholder={props.placeholder}
         name={props.name}
         type={props.type}
         onChange={props.onChange}
       />
-    </BoxInput>
   )
 }
 
-export { Inputs } 
+export { TextAreas } 
